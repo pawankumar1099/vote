@@ -22,8 +22,21 @@ app.use(express.json());
 const MONGODB_URI = process.env.CONNECTION_STRING || process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/votingSystem';
 
 mongoose.connect(MONGODB_URI)
-  .then(() => {
+  .then(async () => {
     console.log('Connected to MongoDB');
+    
+    // Drop old phoneNumber index if it exists
+    try {
+      const User = require('./models/userModel');
+      await User.collection.dropIndex('phoneNumber_1');
+      console.log('Dropped old phoneNumber index');
+    } catch (err) {
+      if (err.message.includes('index not found')) {
+        console.log('phoneNumber index does not exist (expected)');
+      } else {
+        console.log('Index status:', err.message);
+      }
+    }
   })
   .catch((error) => {
     console.error('Error connecting to MongoDB:', error);
