@@ -8,7 +8,11 @@ Project Name: [Replace with your project name]
 
 ## Team Name
 
-Team Name: [Replace with your team name]
+Team Name: VIBER
+
+## Members
+
+1. Pawan Kumar
 
 ## Deployed Link (optional)
 
