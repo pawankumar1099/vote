@@ -41,10 +41,10 @@ const VerifyEmailPhone = () => {
   };
 
   return (
-    <div className="verify-container">
+    <div className="verify-container" role="main" aria-label="Verify your email for YouVote">
       <ToastContainer />
       <div className="verify-form-content">
-        <h2>Verify Email</h2>
+        <h2 id="verify-heading">Verify Email</h2>
         <Space
           direction="vertical"
           style={{
@@ -57,6 +57,8 @@ const VerifyEmailPhone = () => {
             description="Verification code has been sent to your email."
             type="info"
             showIcon
+            role="status"
+            aria-live="polite"
           />
 
         </Space>
@@ -64,25 +66,26 @@ const VerifyEmailPhone = () => {
           name="verify_email_phone"
           className="verify-form"
           onFinish={onFinish}
+          aria-labelledby="verify-heading"
         >
           <Form.Item
             name="email"
             rules={[{ required: true, message: 'Please input your Email!' }]}
           >
-            <Input className="large-input" placeholder="Email address" />
+            <Input className="large-input" placeholder="Email address" aria-label="Email address" />
           </Form.Item>
           <Form.Item
             name="emailCode"
             rules={[{ required: true, message: 'Please input the Email Verification Code!' }]}
           >
-            <Input className="large-input" placeholder="Email Verification Code" />
+            <Input className="large-input" placeholder="Email Verification Code" aria-label="Email verification code" />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="verify-form-button large-input">
+            <Button type="primary" htmlType="submit" className="verify-form-button large-input" aria-label="Submit verification code">
               Verify
             </Button>
           </Form.Item>
-          <div className="all-rights-reserved">
+          <div className="all-rights-reserved" aria-label="All rights reserved">
             © 2024 <span>YouVote</span> Inc. all rights reserved.
           </div>
         </Form>

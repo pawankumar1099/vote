@@ -1,20 +1,40 @@
 *{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
+    box-sizing: border-box;
 }
+
+.home-container {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
 .navbar-links {
     display: flex;
     align-items: center;
+    gap: 8px;
   
     .nav-link {
       display: flex;
       align-items: center;
       text-decoration: none;
-      color: inherit;
-      margin-right: 20px;
-      color: #028391;
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      
+      p {
+        margin: 0;
+      }
+      
       svg {
-        margin-right: 5px;
+        margin-right: 6px;
+        font-size: 1.3rem;
+      }
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
       }
     }
   }
@@ -27,22 +47,31 @@
   }
   
   .home-content {
-    padding: 20px;
+    padding: 40px 20px;
     .home-content-welcome{
-        height: 20rem;
+        height: auto;
+        min-height: 18rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+        border-radius: 20px;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         .home-content-welcome-title{
             color: #01204E;
             font-size: 45px;
             font-weight: bold;
+            margin-bottom: 16px;
         }
         .home-content-welcome-des{
             color: #028391;
+            font-size: 18px;
+            max-width: 600px;
         }
   }
   
@@ -82,9 +111,112 @@
   .css-hip9hq-MuiPaper-root-MuiAppBar-root{
     background-color: #01204E!important;
   }
+
+  .filter-section {
+    padding: 24px;
+    margin-bottom: 60px;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .filter-heading {
+    color: #01204E;
+    font-weight: 700;
+  }
+
+  .election-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+    }
+
+    .MuiCardContent-root {
+      flex: 1;
+      padding: 20px;
+    }
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    gap: 12px;
+  }
+
+  .election-title {
+    color: #01204E;
+    font-weight: 700;
+    flex: 1;
+  }
+
+  .status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .election-description {
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .election-dates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .date-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .date-label {
+    font-size: 12px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+
+  .date-value {
+    font-size: 14px;
+    color: #01204E;
+    font-weight: 700;
+  }
   
   @media(max-width: 700px){
     .applyFiltersButton{
       font-size: .7rem!important;
+    }
+    
+    .home-content-welcome-title {
+      font-size: 32px;
+    }
+    
+    .home-content-welcome-des {
+      font-size: 16px;
+    }
+    
+    .election-dates {
+      grid-template-columns: 1fr;
     }
   }

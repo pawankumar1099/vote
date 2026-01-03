@@ -41,36 +41,37 @@ const Login = () => {
 
 
   return (
-    <div className="login-container">
+    <div className="login-container" role="main" aria-label="Login to YouVote">
       <ToastContainer />
       <div className="login-form-content">
         <div className="login-form-logo-conatiner">
-          <img src="/img/YouVoteLogoLargeVersion.png" alt="" />
+          <img src="/img/YouVoteLogoLargeVersion.png" alt="YouVote logo" />
         </div>
-        <h2>Log in</h2>
+        <h2 id="login-heading">Log in</h2>
         <Form
           name="login"
           className="login-form"
           initialValues={{ remember: true }}
           onFinish={onFinish}
+          aria-labelledby="login-heading"
         >
           <Form.Item
             name="email"
             rules={[{ required: true, message: 'Please input your Email!', acctrive: true }]}
           >
-            <Input className='large-input' placeholder="Email address" />
+            <Input className='large-input' placeholder="Email address" aria-label="Email address" />
           </Form.Item>
           
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button large-input">
+            <Button type="primary" htmlType="submit" className="login-form-button large-input" aria-label="Continue to validate login">
               Continue
             </Button>
           </Form.Item>
         </Form>
         <div className="signup-link">
-          Don't have an account? <Link to="/register">Signup</Link>
+          Don't have an account? <Link to="/register" aria-label="Go to signup">Signup</Link>
         </div>
-        <div className="all-rights-reserved">
+        <div className="all-rights-reserved" aria-label="All rights reserved">
           © 2024 <span>YouVote</span> Inc. all rights reserved.
         </div>
       </div>

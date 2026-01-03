@@ -1,0 +1,144 @@
+:root[data-theme='high-contrast'] {
+  color-scheme: dark;
+}
+
+:root[data-theme='high-contrast'] html,
+:root[data-theme='high-contrast'] body {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+:root[data-theme='high-contrast'] a,
+:root[data-theme='high-contrast'] button,
+:root[data-theme='high-contrast'] [role='button'],
+:root[data-theme='high-contrast'] .nav-link,
+:root[data-theme='high-contrast'] .navbar-button,
+:root[data-theme='high-contrast'] .ant-btn,
+:root[data-theme='high-contrast'] .MuiButton-root {
+  color: #fff !important;
+  background-color: #111 !important;
+  border: 2px solid #0ff !important;
+}
+
+:root[data-theme='high-contrast'] .ant-input,
+:root[data-theme='high-contrast'] .ant-picker,
+:root[data-theme='high-contrast'] input,
+:root[data-theme='high-contrast'] textarea,
+:root[data-theme='high-contrast'] select,
+:root[data-theme='high-contrast'] .MuiOutlinedInput-root {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: 2px solid #0ff !important;
+}
+
+:root[data-theme='high-contrast'] .ant-card,
+:root[data-theme='high-contrast'] .MuiCard-root,
+:root[data-theme='high-contrast'] .MuiPaper-root,
+:root[data-theme='high-contrast'] .card,
+:root[data-theme='high-contrast'] .home-content .applyFiltersButton,
+:root[data-theme='high-contrast'] .home-content .electionCardCnadidatesButton,
+:root[data-theme='high-contrast'] .ant-layout,
+:root[data-theme='high-contrast'] .ant-layout-content,
+:root[data-theme='high-contrast'] .ant-layout-header,
+:root[data-theme='high-contrast'] .ant-layout-footer,
+:root[data-theme='high-contrast'] .ant-page-header,
+:root[data-theme='high-contrast'] .ant-page-header-heading,
+:root[data-theme='high-contrast'] .ant-form,
+:root[data-theme='high-contrast'] .ant-form-item,
+:root[data-theme='high-contrast'] .ant-modal-content,
+:root[data-theme='high-contrast'] .ant-drawer-content,
+:root[data-theme='high-contrast'] .ant-picker-panel,
+:root[data-theme='high-contrast'] .ant-picker-panel-container,
+:root[data-theme='high-contrast'] .MuiAppBar-root,
+:root[data-theme='high-contrast'] .MuiToolbar-root,
+:root[data-theme='high-contrast'] .MuiPaper-elevation,
+:root[data-theme='high-contrast'] .MuiContainer-root,
+:root[data-theme='high-contrast'] .home-content,
+:root[data-theme='high-contrast'] .home-content-welcome,
+:root[data-theme='high-contrast'] .login-form-content,
+:root[data-theme='high-contrast'] .register-form-content,
+:root[data-theme='high-contrast'] .validate-login-form-content,
+:root[data-theme='high-contrast'] .verify-form-content,
+:root[data-theme='high-contrast'] .login-form-info,
+:root[data-theme='high-contrast'] .register-form-info,
+:root[data-theme='high-contrast'] .validate-form-info,
+:root[data-theme='high-contrast'] .verify-container,
+:root[data-theme='high-contrast'] .home-container,
+:root[data-theme='high-contrast'] .register-container,
+:root[data-theme='high-contrast'] .login-container,
+:root[data-theme='high-contrast'] .validate-login-container,
+:root[data-theme='high-contrast'] .verify-container {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #0ff !important;
+  box-shadow: 0 0 0 1px #0ff inset !important;
+}
+
+:root[data-theme='high-contrast'] .home-content .elections-title,
+:root[data-theme='high-contrast'] .home-content-welcome-title,
+:root[data-theme='high-contrast'] .welcome-message,
+:root[data-theme='high-contrast'] .info-message {
+  color: #0ff !important;
+}
+
+:root[data-theme='high-contrast'] .ant-typography,
+:root[data-theme='high-contrast'] .MuiTypography-root,
+:root[data-theme='high-contrast'] p,
+:root[data-theme='high-contrast'] h1,
+:root[data-theme='high-contrast'] h2,
+:root[data-theme='high-contrast'] h3,
+:root[data-theme='high-contrast'] h4,
+:root[data-theme='high-contrast'] h5,
+:root[data-theme='high-contrast'] h6 {
+  color: #fff !important;
+}
+
+:root[data-theme='high-contrast'] .ant-form-item-label > label,
+:root[data-theme='high-contrast'] .ant-alert-message,
+:root[data-theme='high-contrast'] .ant-alert-description {
+  color: #fff !important;
+}
+
+:root[data-theme='high-contrast'] .ant-alert,
+:root[data-theme='high-contrast'] .ant-alert-info {
+  background-color: #000 !important;
+  border-color: #0ff !important;
+}
+
+:root[data-theme='high-contrast'] .ant-picker-input > input::placeholder,
+:root[data-theme='high-contrast'] input::placeholder,
+:root[data-theme='high-contrast'] textarea::placeholder {
+  color: #0ff !important;
+}
+
+:root[data-theme='high-contrast'] .ant-btn-primary,
+:root[data-theme='high-contrast'] .applyFiltersButton,
+:root[data-theme='high-contrast'] .navbar-button {
+  background-color: #0ff !important;
+  color: #000 !important;
+  border: 2px solid #fff !important;
+}
+
+:root[data-theme='high-contrast'] .applyFiltersButton:hover,
+:root[data-theme='high-contrast'] .navbar-button:hover,
+:root[data-theme='high-contrast'] .ant-btn-primary:hover {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+:root[data-theme='high-contrast'] .home-container,
+:root[data-theme='high-contrast'] .login-container,
+:root[data-theme='high-contrast'] .register-container,
+:root[data-theme='high-contrast'] .validate-login-container,
+:root[data-theme='high-contrast'] .verify-container {
+  background: #000 !important;
+}
+
+:root[data-theme='high-contrast'] .navbarLogo {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+:root[data-theme='high-contrast'] .nav-contrast-toggle p {
+  color: #fff !important;
+  margin-left: 4px;
+}

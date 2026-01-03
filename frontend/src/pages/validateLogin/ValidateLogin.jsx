@@ -46,10 +46,10 @@ const ValidateLogin = () => {
   };
 
   return (
-    <div className="validate-login-container">
+    <div className="validate-login-container" role="main" aria-label="Validate your login credentials">
       <ToastContainer />
       <div className="validate-login-form-content">
-        <h2>Validate Login</h2>
+        <h2 id="validate-heading">Validate Login</h2>
         <Space
           direction="vertical"
           style={{
@@ -62,40 +62,43 @@ const ValidateLogin = () => {
             description="Login ID and password are sent to your email and phone."
             type="info"
             showIcon
+            role="status"
+            aria-live="polite"
           />
         </Space>
         <Form
           name="validate_login"
           className="validate-login-form"
           onFinish={onFinish}
+          aria-labelledby="validate-heading"
         >
           <Form.Item
             name="email"
             rules={[{ required: true, message: 'Please input your Email!' }]}
           >
-            <Input className="large-input" placeholder="Email address" />
+            <Input className="large-input" placeholder="Email address" aria-label="Email address" />
           </Form.Item>
           <Form.Item
             name="loginId"
             rules={[{ required: true, message: 'Please input your Login ID!' }]}
           >
-            <Input className="large-input" placeholder="Login ID" />
+            <Input className="large-input" placeholder="Login ID" aria-label="Login ID" />
           </Form.Item>
           <Form.Item
             name="loginPassword"
             rules={[{ required: true, message: 'Please input your Password!' }]}
           >
-            <Input.Password className="large-input" placeholder="Password" />
+            <Input.Password className="large-input" placeholder="Password" aria-label="Password" />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="validate-login-form-button large-input">
+            <Button type="primary" htmlType="submit" className="validate-login-form-button large-input" aria-label="Validate and continue">
               Validate
             </Button>
           </Form.Item>
           <div className="try-again">
-            Didn't receive credentials? <Link to="/">Try again</Link>
+            Didn't receive credentials? <Link to="/" aria-label="Go back to login">Try again</Link>
           </div>
-          <div className="all-rights-reserved">
+          <div className="all-rights-reserved" aria-label="All rights reserved">
             © 2024 <span>YouVote</span> Inc. all rights reserved.
           </div>
         </Form>

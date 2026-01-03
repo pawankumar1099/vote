@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./navBar.scss";
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -8,6 +8,7 @@ import {
   IconButton,
   Menu,
   MenuItem,
+    Switch,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Home as HomeIcon } from '@mui/icons-material';
@@ -24,6 +25,21 @@ const NavBar = () => {
 
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState(null);
+        const [highContrast, setHighContrast] = useState(() => {
+            if (typeof window === 'undefined') return false;
+            return localStorage.getItem('youvote-theme') === 'high-contrast';
+        });
+
+        useEffect(() => {
+            if (typeof document === 'undefined') return;
+            if (highContrast) {
+                document.documentElement.setAttribute('data-theme', 'high-contrast');
+                localStorage.setItem('youvote-theme', 'high-contrast');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('youvote-theme', 'light');
+            }
+        }, [highContrast]);
 
     const handleLogout = () => {
     logout();
@@ -38,19 +54,27 @@ const NavBar = () => {
     setAnchorEl(null);
     };
     return (
-        <Toolbar disableGutters>
+        <Toolbar component="nav" disableGutters aria-label="Primary navigation">
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/home" style={{display:"flex", justifyContent: "center"}}>
-                <img className="navbarLogo" src="/img/YouVoteLogoSmallVersionCircular.png" alt="" />
+            <Link to="/home" style={{display:"flex", justifyContent: "center"}} aria-label="YouVote home">
+                <img className="navbarLogo" src="/img/YouVoteLogoSmallVersionCircular.png" alt="YouVote logo" />
             </Link>
             </Typography>
             <div className="navbar-links">
-            <Link to="/home" color="inherit" className="nav-link" sx={{ marginRight: 2 }}><HomeIcon style={{fontSize: "1.7rem", marginBottom: "2px"}} /> <p>Home</p></Link>
-            <Link to="/security" color="inherit" className="nav-link" sx={{ marginRight: 2 }}><LockIcon style={{marginBottom: "2.5px"}} /> <p>Security</p></Link>
-            <Link to="/calendar" color="inherit" className="nav-link" sx={{ marginRight: 2 }}><CalendarMonthIcon style={{marginBottom: "2px"}} /> <p>Calendar</p></Link>
-            <Link to="/history" color="inherit" className="nav-link" sx={{ marginRight: 2 }}><HistoryIcon style={{fontSize: "1.7rem", marginBottom: "2px"}} /> <p>History</p></Link>
-            <Link to="/profile" color="inherit" className="nav-link" sx={{ marginRight: 2 }}><AccountBoxIcon /> <p>Profile</p></Link>
-            <Button className='navbar-button' color="inherit" onClick={handleLogout}>Logout</Button>
+            <Link to="/home" color="inherit" className="nav-link" aria-label="Go to home" data-speak="Home" sx={{ marginRight: 2 }}><HomeIcon style={{fontSize: "1.7rem", marginBottom: "2px"}} /> <p>Home</p></Link>
+            <Link to="/security" color="inherit" className="nav-link" aria-label="Go to security" data-speak="Security" sx={{ marginRight: 2 }}><LockIcon style={{marginBottom: "2.5px"}} /> <p>Security</p></Link>
+            <Link to="/calendar" color="inherit" className="nav-link" aria-label="View election calendar" data-speak="Election calendar" sx={{ marginRight: 2 }}><CalendarMonthIcon style={{marginBottom: "2px"}} /> <p>Calendar</p></Link>
+            <Link to="/history" color="inherit" className="nav-link" aria-label="View voting history" data-speak="Voting history" sx={{ marginRight: 2 }}><HistoryIcon style={{fontSize: "1.7rem", marginBottom: "2px"}} /> <p>History</p></Link>
+            <Link to="/profile" color="inherit" className="nav-link" aria-label="View profile" data-speak="Profile" sx={{ marginRight: 2 }}><AccountBoxIcon /> <p>Profile</p></Link>
+            <Button className='navbar-button' color="inherit" onClick={handleLogout} aria-label="Log out of your account" data-speak="Logout">Logout</Button>
+                        <div className="nav-contrast-toggle" aria-label="High contrast theme toggle" data-speak={highContrast ? 'Disable high contrast' : 'Enable high contrast'}>
+                            <Switch
+                                checked={highContrast}
+                                onChange={(e) => setHighContrast(e.target.checked)}
+                                inputProps={{ 'aria-label': 'Toggle high contrast theme' }}
+                            />
+                            <p>{highContrast ? 'High Contrast: On' : 'High Contrast: Off'}</p>
+                        </div>
             </div>
             <IconButton
             edge="end"
@@ -58,6 +82,7 @@ const NavBar = () => {
             aria-label="menu"
             aria-controls="menu-appbar"
             aria-haspopup="true"
+            aria-expanded={Boolean(anchorEl) ? 'true' : undefined}
             onClick={handleMenuOpen}
             sx={{ display: { xs: 'flex', md: 'none' } }}
             >
@@ -77,6 +102,7 @@ const NavBar = () => {
             }}
             open={Boolean(anchorEl)}
             onClose={handleMenuClose}
+            MenuListProps={{ 'aria-label': 'Mobile navigation' }}
             >
             <MenuItem onClick={handleMenuClose}><Link to="/home" color="inherit" className="nav-link">Home</Link></MenuItem>
             <MenuItem onClick={handleMenuClose}><Link to="/security" color="inherit" className="nav-link">Security</Link></MenuItem>

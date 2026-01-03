@@ -22,7 +22,7 @@ import {
 function App() {
   const { isAuthenticated } = useAuth();
   return (
-    <div className="App">
+    <div className="App" role="document" aria-label="YouVote application">
       <BrowserRouter>
         <Routes>
           <Route path="/">

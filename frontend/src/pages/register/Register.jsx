@@ -42,43 +42,44 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
+    <div className="register-container" role="main" aria-label="Register for YouVote">
       <ToastContainer />
       <div className="register-form-content">
-        <h2>Register</h2>
+        <h2 id="register-heading">Register</h2>
         <Form
           name="register"
           className="register-form"
           onFinish={onFinish}
+          aria-labelledby="register-heading"
         >
           <Form.Item
             name="firstName"
             rules={[{ required: true, message: 'Please input your First Name!' }]}
           >
-            <Input className="large-input" placeholder="First Name" />
+            <Input className="large-input" placeholder="First Name" aria-label="First name" />
           </Form.Item>
           <Form.Item
             name="lastName"
             rules={[{ required: true, message: 'Please input your Last Name!' }]}
           >
-            <Input className="large-input" placeholder="Last Name" />
+            <Input className="large-input" placeholder="Last Name" aria-label="Last name" />
           </Form.Item>
           <Form.Item
             name="email"
             rules={[{ required: true, message: 'Please input your Email!' }]}
           >
-            <Input className="large-input" placeholder="Email address" />
+            <Input className="large-input" placeholder="Email address" aria-label="Email address" />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="register-form-button large-input">
+            <Button type="primary" htmlType="submit" className="register-form-button large-input" aria-label="Submit registration">
               Register
             </Button>
           </Form.Item>
         </Form>
         <div className="login-link">
-          You already have an account? <Link to="/">Log in</Link>
+          You already have an account? <Link to="/" aria-label="Go to login">Log in</Link>
         </div>
-        <div className="all-rights-reserved">
+        <div className="all-rights-reserved" aria-label="All rights reserved">
           © 2024 <span>YouVote</span> Inc. all rights reserved.
         </div>
       </div>

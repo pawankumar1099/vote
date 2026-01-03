@@ -2,24 +2,67 @@
     .navbarLogo{
         width: 50px;
         height: 50px;
+        transition: transform 0.3s ease;
+        
+        &:hover {
+          transform: scale(1.1);
+        }
     }
+    
     .navbar-button{
-        border-radius: 5px;
-        padding: 9px 22px;
-        background: #028391;
+        border-radius: 8px;
+        padding: 10px 24px;
+        background: #ffffff;
         border: none;
         color: #01204E;
         cursor: pointer;
-        font-weight: bold;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        
+        &:hover{
+            background: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
     }
-    .navbar-button:hover{
-        border-radius: 5px;
-        padding: 9px 22px;
-        background: #028391;
-        border: none;
-        color: #01204E;
-        cursor: pointer;
-        font-weight: bold;
+    
+    .nav-contrast-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 8px;
+      padding: 4px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      
+      p {
+        margin: 0;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      
+      .MuiSwitch-root {
+        .MuiSwitch-switchBase {
+          color: #ffffff;
+          
+          &.Mui-checked {
+            color: #028391;
+            
+            & + .MuiSwitch-track {
+              background-color: #ffffff;
+            }
+          }
+        }
+        
+        .MuiSwitch-track {
+          background-color: rgba(255, 255, 255, 0.3);
+        }
+      }
     }
 }
 
@@ -29,10 +72,34 @@
     .navbar-links{
         display: none;
     }
+    
     .home-container {
         .navbarLogo{
             width: 45px;
             height: 45px;
         }
+    }
+    
+    .MuiMenu-paper {
+      .MuiMenuItem-root {
+        padding: 12px 24px;
+        
+        .nav-link {
+          color: #01204E;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          width: 100%;
+          
+          &:hover {
+            background: transparent;
+          }
+        }
+        
+        &:hover {
+          background-color: #f5f5f5;
+        }
       }
+    }
   }

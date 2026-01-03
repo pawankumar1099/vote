@@ -61,11 +61,11 @@ const Home = () => {
     const end = new Date(endDate);
 
     if (now < start) {
-      return { text: 'Upcoming', color: 'blue' };
+      return { text: 'Upcoming', color: '#3b82f6', bgColor: '#dbeafe' };
     } else if (now >= start && now <= end) {
-      return { text: 'Ongoing', color: 'green' };
+      return { text: 'Ongoing', color: '#10b981', bgColor: '#d1fae5' };
     } else {
-      return { text: 'Ended', color: 'red' };
+      return { text: 'Ended', color: '#6b7280', bgColor: '#f3f4f6' };
     }
   };
 
@@ -79,7 +79,7 @@ const Home = () => {
   };
 
   return (
-    <div className="home-container">
+    <div className="home-container" role="main" id="main-content" aria-busy={loading} aria-label="Election listing and filters" data-speak="Election listing and filters">
       <CssBaseline />
       <AppBar position="static">
         <Container maxWidth="lg">
@@ -97,8 +97,8 @@ const Home = () => {
         </div>
 
         {/* Filter Section */}
-        <Paper elevation={3} style={{ padding: '24px', marginBottom: '100px' }}>
-          <Typography variant="h6" gutterBottom>
+        <Paper elevation={3} className="filter-section" role="region" aria-labelledby="filter-heading">
+          <Typography id="filter-heading" variant="h6" gutterBottom className="filter-heading">
             Filter Elections
           </Typography>
           <Form layout="vertical">
@@ -107,6 +107,7 @@ const Home = () => {
                 <Form.Item label="Date">
                   <DatePicker
                     style={{ width: '100%' }}
+                    aria-label="Filter by start date"
                     onChange={(date, dateString) => setFilterDate(dateString)}
                   />
                 </Form.Item>
@@ -115,6 +116,7 @@ const Home = () => {
                 <Form.Item label="Title">
                   <Input
                     placeholder="Enter election title"
+                    aria-label="Filter by election title"
                     value={filterTitle}
                     onChange={(e) => setFilterTitle(e.target.value)}
                   />
@@ -124,6 +126,8 @@ const Home = () => {
                 <Form.Item>
                   <AntButton
                     type="primary"
+                    aria-label="Apply election filters"
+                    data-speak="Apply election filters"
                     onClick={handleApplyFilters}
                     block
                     style={{ marginTop: '30px', background:"#028391", color:"#01204E", fontWeight:"bold", fontSize:"1rem" }}
@@ -137,7 +141,7 @@ const Home = () => {
           </Form>
         </Paper>
 
-        <Typography variant="h5" className="elections-title" gutterBottom>
+        <Typography variant="h5" className="elections-title" gutterBottom id="elections-heading">
           <HowToVoteIcon /> Elections
         </Typography>
         {loading ? (
@@ -146,39 +150,56 @@ const Home = () => {
           </Box>
         ) : (
           <Grid container spacing={4}>
-            {elections.map(election => (
-              <Grid item key={election._id} xs={12} sm={6} md={4}>
-                <Card style={{boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
-                  <CardContent>
-                    <Typography variant="h6" component="div">
-                      {election.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {election.description}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Start Date: <span style={{fontWeight: "bold"}}>{formatDate(election.startDate)}</span>
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      End Date: <span style={{fontWeight: "bold"}}>{formatDate(election.endDate)}</span>
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Status: 
-                    </Typography>
-                    <Typography variant="body2" style={{ color: getStatus(election.startDate, election.endDate).color }}>
-                      {getStatus(election.startDate, election.endDate).text}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Link to={getStatus(election.startDate, election.endDate).text === 'Ended' ? `/electionsResult/${election._id}` : `/elections/${election._id}`}>
-                      <Button size="small" color="primary" className='electionCardCnadidatesButton'>
-                        {getStatus(election.startDate, election.endDate).text === 'Ended' ? 'View Results' : 'View Candidates'}
-                      </Button>
-                    </Link>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
+            {elections.map((election) => {
+              const titleId = `election-${election._id}-title`;
+              const descId = `election-${election._id}-description`;
+              const statusId = `election-${election._id}-status`;
+
+              return (
+                <Grid item key={election._id} xs={12} sm={6} md={4}>
+                  <Card role="article" aria-labelledby={titleId} aria-describedby={`${descId} ${statusId}`} data-speak={`${election.title}. ${getStatus(election.startDate, election.endDate).text}`} className="election-card">
+                    <CardContent>
+                      <div className="card-header">
+                        <Typography id={titleId} variant="h6" component="div" className="election-title">
+                          {election.title}
+                        </Typography>
+                        <span 
+                          id={statusId}
+                          className={`status-badge status-${getStatus(election.startDate, election.endDate).text.toLowerCase()}`}
+                          style={{
+                            backgroundColor: getStatus(election.startDate, election.endDate).bgColor,
+                            color: getStatus(election.startDate, election.endDate).color
+                          }}
+                          aria-live="polite"
+                        >
+                          {getStatus(election.startDate, election.endDate).text}
+                        </span>
+                      </div>
+                      <Typography id={descId} variant="body2" color="text.secondary" className="election-description">
+                        {election.description}
+                      </Typography>
+                      <div className="election-dates">
+                        <div className="date-item">
+                          <span className="date-label">Start Date</span>
+                          <span className="date-value">{formatDate(election.startDate)}</span>
+                        </div>
+                        <div className="date-item">
+                          <span className="date-label">End Date</span>
+                          <span className="date-value">{formatDate(election.endDate)}</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                    <CardActions>
+                      <Link to={getStatus(election.startDate, election.endDate).text === 'Ended' ? `/electionsResult/${election._id}` : `/elections/${election._id}`} aria-label={getStatus(election.startDate, election.endDate).text === 'Ended' ? `View results for ${election.title}` : `View candidates for ${election.title}`} data-speak={getStatus(election.startDate, election.endDate).text === 'Ended' ? `View results for ${election.title}` : `View candidates for ${election.title}`}>
+                        <Button size="small" color="primary" className='electionCardCnadidatesButton'>
+                          {getStatus(election.startDate, election.endDate).text === 'Ended' ? 'View Results' : 'View Candidates'}
+                        </Button>
+                      </Link>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              );
+            })}
           </Grid>
         )}
       </Container>
