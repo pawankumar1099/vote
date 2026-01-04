@@ -42,7 +42,7 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container" role="main" aria-label="Register for SecureVote">
+    <div className="register-container" role="main" aria-label="Register for YouVote">
       <ToastContainer />
       <div className="register-form-content">
         <h2 id="register-heading">Register</h2>
@@ -80,7 +80,7 @@ const Register = () => {
           You already have an account? <Link to="/" aria-label="Go to login">Log in</Link>
         </div>
         <div className="all-rights-reserved" aria-label="All rights reserved">
-          © 2024 <span>SecureVote</span> Inc. all rights reserved.
+          © 2024 <span>YouVote</span> Inc. all rights reserved.
         </div>
       </div>
       <div className="register-form-info">
@@ -89,7 +89,7 @@ const Register = () => {
           <FormOutlined className='register-form-info-content-icon'/>
           <h4>
           Empowering your voice in democracy with secure, informed, and engaging voting.<br /><br />
-          Enter your first name, last name, and email in order to register into SecureVote.<br /><br />
+          Enter your first name, last name, and email in order to register into YouVote.<br /><br />
           If you already have an account go to the login page.<br />
           </h4>
         </div>

@@ -41,7 +41,7 @@ const VerifyEmailPhone = () => {
   };
 
   return (
-    <div className="verify-container" role="main" aria-label="Verify your email for SecureVote">
+    <div className="verify-container" role="main" aria-label="Verify your email for YouVote">
       <ToastContainer />
       <div className="verify-form-content">
         <h2 id="verify-heading">Verify Email</h2>
@@ -86,7 +86,7 @@ const VerifyEmailPhone = () => {
             </Button>
           </Form.Item>
           <div className="all-rights-reserved" aria-label="All rights reserved">
-            © 2024 <span>SecureVote</span> Inc. all rights reserved.
+            © 2024 <span>YouVote</span> Inc. all rights reserved.
           </div>
         </Form>
       </div>

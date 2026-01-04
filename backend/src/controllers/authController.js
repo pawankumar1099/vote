@@ -73,7 +73,7 @@ exports.registerUser = async (req, res) => {
       from: 'youvote7@gmail.com',
       to: email,
       subject: 'Email Verification Code',
-      text: `Welcome to SecureVote, ${firstName} ${lastName}!\n\nThank you for registering on our platform. To complete your registration, please verify your email address by entering the following verification code in the app:\n\nVerification Code: ${emailCode}\n\nIf you did not request this code, please ignore this email.\n\nBest regards,\nThe YouVote Team`,
+      text: `Welcome to YouVotee} ${lastName}!\n\nThank you for registering on our platform. To complete your registration, please verify your email address by entering the following verification code in the app:\n\nVerification Code: ${emailCode}\n\nIf you did not request this code, please ignore this email.\n\nBest regards,\nThe YouVote Team`,
     };
 
     transporter.sendMail(mailOptions);

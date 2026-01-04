@@ -72,7 +72,7 @@ const Login = () => {
           Don't have an account? <Link to="/register" aria-label="Go to signup">Signup</Link>
         </div>
         <div className="all-rights-reserved" aria-label="All rights reserved">
-          © 2026 <span>SecureVote</span> Inc. all rights reserved.
+          © 2026 <span>YouVote all rights reserved.</span>
         </div>
       </div>
       <div className="login-form-info">
@@ -81,7 +81,7 @@ const Login = () => {
           <LoginOutlined className='login-form-info-content-icon'/>
           <h4>
           Empowering your voice in democracy with secure, informed, and engaging voting.<br /><br />
-          Enter your email address in order to login into SecureVote.<br /><br />
+          Enter your email address in order to login into YouVote
           If you don't have an account go to the signup page.<br />
           </h4>
         </div>
