@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { AuthProvider } from './AuthContext';
 import './highContrast.css';
+import './keyboardAccessibility.css';
 import { initClickToSpeak } from './utils/speech';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

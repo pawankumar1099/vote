@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Login from "./pages/login/Login";
 import ValidateLogin from "./pages/validateLogin/ValidateLogin";
 import Register from "./pages/register/Register";
@@ -11,6 +12,8 @@ import MyVotesHistory from './pages/myVotesHistory/MyVotesHistory';
 import Profile from './pages/profile/Profile';
 
 import { useAuth } from './AuthContext';
+import { initSkipLinks, initFocusVisible, globalShortcuts } from './utils/keyboardNavigation';
+import { useNavigate } from 'react-router-dom';
 
 import {
   BrowserRouter,
@@ -19,12 +22,44 @@ import {
   Navigate
 } from "react-router-dom";
 
-function App() {
+function AppContent() {
   const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Initialize keyboard accessibility features
+    initSkipLinks();
+    initFocusVisible();
+
+    // Register global keyboard shortcuts
+    if (isAuthenticated()) {
+      globalShortcuts.register('h', () => navigate('/home'), 'Navigate to Home', false, true);
+      globalShortcuts.register('c', () => navigate('/calendar'), 'Navigate to Calendar', false, true);
+      globalShortcuts.register('p', () => navigate('/profile'), 'Navigate to Profile', false, true);
+      globalShortcuts.register('v', () => navigate('/history'), 'Navigate to Vote History', false, true);
+      globalShortcuts.register('s', () => navigate('/security'), 'Navigate to Security', false, true);
+    }
+
+    return () => {
+      // Cleanup shortcuts on unmount
+      globalShortcuts.unregister('Alt+h');
+      globalShortcuts.unregister('Alt+c');
+      globalShortcuts.unregister('Alt+p');
+      globalShortcuts.unregister('Alt+v');
+      globalShortcuts.unregister('Alt+s');
+    };
+  }, [isAuthenticated, navigate]);
+
   return (
-    <div className="App" role="document" aria-label="YouVote">
-      <BrowserRouter>
-        <Routes>
+    <>
+      {/* Skip to main content link for keyboard navigation */}
+      <a href="#main-content" className="skip-to-content">
+        Skip to main content
+      </a>
+      
+      <div className="App" role="document" aria-label="AccessibleVote">
+        <main id="main-content" role="main">
+          <Routes>
           <Route path="/">
             <Route index element={<Login/>}/>
             <Route path="validateLogin" element={<ValidateLogin/>}/>
@@ -52,9 +87,18 @@ function App() {
             (isAuthenticated()) ? <Profile/> : <Navigate to="/" replace />
             }/>
           </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+          </Routes>
+        </main>
+      </div>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }
 

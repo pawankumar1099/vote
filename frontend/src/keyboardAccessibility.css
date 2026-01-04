@@ -1,0 +1,199 @@
+/* Global Keyboard Accessibility Styles */
+
+/* Skip to content link - hidden until focused */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background-color: #2196F3;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 0.25rem 0;
+  transition: left 0.2s ease-in-out;
+}
+
+.skip-to-content:focus {
+  left: 0;
+  top: 0;
+  outline: 3px solid #FF9800;
+  outline-offset: 2px;
+}
+
+/* Keyboard navigation focus indicators */
+body.keyboard-nav *:focus {
+  outline: 3px solid #2196F3 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.2) !important;
+  transition: outline 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Enhanced focus for interactive elements */
+body.keyboard-nav a:focus,
+body.keyboard-nav button:focus,
+body.keyboard-nav input:focus,
+body.keyboard-nav textarea:focus,
+body.keyboard-nav select:focus,
+body.keyboard-nav [tabindex]:focus {
+  outline: 3px solid #2196F3 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.2) !important;
+}
+
+/* High contrast mode focus (when high contrast is enabled) */
+body.high-contrast.keyboard-nav *:focus {
+  outline: 3px solid #FFEB3B !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 5px rgba(255, 235, 59, 0.3) !important;
+}
+
+/* Focus for cards that are keyboard accessible */
+body.keyboard-nav .MuiCard-root:focus,
+body.keyboard-nav .ant-card:focus {
+  outline: 3px solid #2196F3 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.2), 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(-2px);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Focus for MUI dialog/modal */
+body.keyboard-nav .MuiDialog-root:focus,
+body.keyboard-nav .MuiModal-root:focus {
+  outline: none !important;
+}
+
+body.keyboard-nav .MuiDialog-paper:focus-within {
+  box-shadow: 0 8px 24px rgba(33, 150, 243, 0.3) !important;
+}
+
+/* Remove default focus outline when using mouse */
+body:not(.keyboard-nav) *:focus {
+  outline: none;
+}
+
+/* Ensure buttons have visible focus even with mouse */
+body:not(.keyboard-nav) button:focus-visible {
+  outline: 2px solid #2196F3;
+  outline-offset: 2px;
+}
+
+/* ARIA live region for announcements (visually hidden) */
+#aria-live-announcer {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Focus trap indicator for modals */
+.focus-trap-active {
+  position: relative;
+}
+
+.focus-trap-active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  border: 2px solid rgba(33, 150, 243, 0.5);
+  border-radius: inherit;
+}
+
+/* Keyboard shortcut help indicator */
+.keyboard-shortcuts-help {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9998;
+  padding: 0.5rem 1rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+body.keyboard-nav .keyboard-shortcuts-help {
+  opacity: 1;
+}
+
+/* Accessible hover and focus states for links */
+a {
+  text-decoration: underline;
+  text-decoration-skip-ink: auto;
+}
+
+a:hover,
+a:focus {
+  text-decoration-thickness: 2px;
+}
+
+/* Ensure sufficient color contrast for focus indicators */
+@media (prefers-contrast: high) {
+  body.keyboard-nav *:focus {
+    outline-width: 4px !important;
+    outline-offset: 3px !important;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .skip-to-content,
+  body.keyboard-nav *:focus,
+  body.keyboard-nav .MuiCard-root:focus {
+    transition: none !important;
+  }
+}
+
+/* Focus styles for form elements */
+body.keyboard-nav input[type="text"]:focus,
+body.keyboard-nav input[type="email"]:focus,
+body.keyboard-nav input[type="password"]:focus,
+body.keyboard-nav input[type="number"]:focus,
+body.keyboard-nav input[type="tel"]:focus,
+body.keyboard-nav textarea:focus,
+body.keyboard-nav select:focus {
+  border-color: #2196F3 !important;
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2) !important;
+}
+
+/* Focus for radio buttons and checkboxes */
+body.keyboard-nav input[type="radio"]:focus,
+body.keyboard-nav input[type="checkbox"]:focus {
+  outline: 3px solid #2196F3 !important;
+  outline-offset: 2px !important;
+}
+
+/* Ensure visible focus for icon buttons */
+body.keyboard-nav .MuiIconButton-root:focus {
+  background-color: rgba(33, 150, 243, 0.1) !important;
+}
+
+/* Tab navigation indicator */
+.tab-navigation-indicator {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background-color: rgba(33, 150, 243, 0.9);
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+body.keyboard-nav .tab-navigation-indicator.visible {
+  opacity: 1;
+}

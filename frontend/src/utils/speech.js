@@ -107,4 +107,71 @@ export function initClickToSpeak() {
   document.addEventListener('click', handler, true);
 }
 
+// Speech Recognition for voice commands
+const hasSpeechRecognition = typeof window !== 'undefined' && 
+  ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window);
+
+let recognition = null;
+
+export function initSpeechRecognition() {
+  if (!hasSpeechRecognition) return null;
+  
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechRecognition();
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.lang = 'en-US';
+  
+  return recognition;
+}
+
+export function startListening(onResult, onError) {
+  if (!recognition) {
+    recognition = initSpeechRecognition();
+  }
+  
+  if (!recognition) {
+    onError?.('Speech recognition is not supported in this browser');
+    return;
+  }
+
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    onResult?.(transcript);
+  };
+
+  recognition.onerror = (event) => {
+    onError?.(event.error);
+  };
+
+  recognition.start();
+}
+
+export function stopListening() {
+  if (recognition) {
+    recognition.stop();
+  }
+}
+
+// Enhanced speak with callback
+export function speakWithCallback(text, onEnd) {
+  if (!hasSpeech) {
+    onEnd?.();
+    return;
+  }
+  
+  const trimmed = (text || '').replace(/\s+/g, ' ').trim();
+  if (!trimmed) {
+    onEnd?.();
+    return;
+  }
+  
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(trimmed);
+  utterance.rate = 1;
+  utterance.pitch = 1;
+  utterance.onend = onEnd;
+  window.speechSynthesis.speak(utterance);
+}
+
 export { speak };

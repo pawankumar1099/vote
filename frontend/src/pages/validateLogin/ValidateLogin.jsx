@@ -99,7 +99,7 @@ const ValidateLogin = () => {
             Didn't receive credentials? <Link to="/" aria-label="Go back to login">Try again</Link>
           </div>
           <div className="all-rights-reserved" aria-label="All rights reserved">
-            © 2024 <span>YouVote</span> Inc. all rights reserved.
+            © 2026 <span>AccessibleVote</span> Inc. all rights reserved.
           </div>
         </Form>
       </div>

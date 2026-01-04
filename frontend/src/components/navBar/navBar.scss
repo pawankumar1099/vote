@@ -1,69 +1,134 @@
-.home-container {
-    .navbarLogo{
-        width: 50px;
-        height: 50px;
-        transition: transform 0.3s ease;
-        
-        &:hover {
-          transform: scale(1.1);
-        }
-    }
+.navbarLogo{
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease;
     
-    .navbar-button{
-        border-radius: 8px;
-        padding: 10px 24px;
-        background: #ffffff;
-        border: none;
-        color: #01204E;
-        cursor: pointer;
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: 14px;
-        letter-spacing: 0.5px;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        
-        &:hover{
-            background: #f0f0f0;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
+    &:hover {
+      transform: scale(1.1);
     }
+}
+
+.navbar-button{
+    border-radius: 8px;
+    padding: 10px 24px;
+    background: #ffffff;
+    border: none;
+    color: #01204E;
+    cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     
-    .nav-contrast-toggle {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-left: 8px;
-      padding: 4px 12px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.1);
+    &:hover{
+        background: #f0f0f0;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.nav-contrast-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 8px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  
+  p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .MuiSwitch-root {
+    .MuiSwitch-switchBase {
+      color: #ffffff;
       
-      p {
-        margin: 0;
-        color: #ffffff;
-        font-size: 14px;
-        font-weight: 500;
-      }
-      
-      .MuiSwitch-root {
-        .MuiSwitch-switchBase {
-          color: #ffffff;
-          
-          &.Mui-checked {
-            color: #028391;
-            
-            & + .MuiSwitch-track {
-              background-color: #ffffff;
-            }
-          }
-        }
+      &.Mui-checked {
+        color: #028391;
         
-        .MuiSwitch-track {
-          background-color: rgba(255, 255, 255, 0.3);
+        & + .MuiSwitch-track {
+          background-color: #ffffff;
         }
       }
     }
+    
+    .MuiSwitch-track {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+.nav-font-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  
+  .font-size-label {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 40px;
+    text-align: center;
+    padding: 0 4px;
+  }
+  
+  .MuiIconButton-root {
+    color: #ffffff;
+    padding: 6px;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    &:disabled {
+      color: rgba(255, 255, 255, 0.3);
+    }
+    
+    svg {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    
+    p {
+      margin: 0;
+    }
+    
+    svg {
+      margin-right: 6px;
+      font-size: 1.3rem;
+    }
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+  }
 }
 
 
@@ -73,11 +138,9 @@
         display: none;
     }
     
-    .home-container {
-        .navbarLogo{
-            width: 45px;
-            height: 45px;
-        }
+    .navbarLogo{
+        width: 45px;
+        height: 45px;
     }
     
     .MuiMenu-paper {

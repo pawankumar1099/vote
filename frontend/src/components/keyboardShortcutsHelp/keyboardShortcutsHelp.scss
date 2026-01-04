@@ -1,0 +1,27 @@
+/* Keyboard Shortcuts Help Component Styles */
+
+.keyboard-shortcuts-help {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9998;
+  padding: 0.5rem 1rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+body.keyboard-nav .keyboard-shortcuts-help {
+  opacity: 1;
+}
+
+/* High contrast mode */
+body.high-contrast .keyboard-shortcuts-help {
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #FFEB3B;
+}

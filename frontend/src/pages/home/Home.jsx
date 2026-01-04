@@ -19,6 +19,7 @@ import { api } from '../../config';
 import { HowToVote as HowToVoteIcon } from '@mui/icons-material';
 import { Input, DatePicker, Button as AntButton, Form, Row, Col } from 'antd';
 import NavBar from "../../components/navBar/NavBar";
+import KeyboardShortcutsHelp from '../../components/keyboardShortcutsHelp/KeyboardShortcutsHelp';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -88,8 +89,8 @@ const Home = () => {
       </AppBar>
       <Container className="home-content" maxWidth="lg">
         <div className="home-content-welcome">
-          <Typography variant="h4" className="welcome-message home-content-welcome-title" gutterBottom>
-            Welcome to YouVote
+          <Typography variant="h4" className="welcome-message home-content-welcome-title" gutterBottom aria-busy={loading} aria-label="Election listing and filters" data-speak="Welcome to AccessibleVote, Press question mark on keyboard for shortcuts">
+            Welcome to AccessibleVote
           </Typography>
           <Typography variant="body1" className="info-message home-content-welcome-des" gutterBottom>
             Empowering your voice in democracy with secure, informed, and engaging voting.
@@ -203,6 +204,7 @@ const Home = () => {
           </Grid>
         )}
       </Container>
+      <KeyboardShortcutsHelp />
     </div>
   );
 };

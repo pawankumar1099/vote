@@ -8,7 +8,8 @@ import {
   IconButton,
   Menu,
   MenuItem,
-    Switch,
+  Switch,
+  Tooltip,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Home as HomeIcon } from '@mui/icons-material';
@@ -16,6 +17,9 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import LockIcon from '@mui/icons-material/Lock';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import HistoryIcon from '@mui/icons-material/History';
+import TextIncreaseIcon from '@mui/icons-material/TextIncrease';
+import TextDecreaseIcon from '@mui/icons-material/TextDecrease';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 //context
 import { useAuth } from '../../AuthContext';
@@ -25,21 +29,44 @@ const NavBar = () => {
 
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState(null);
-        const [highContrast, setHighContrast] = useState(() => {
-            if (typeof window === 'undefined') return false;
-            return localStorage.getItem('youvote-theme') === 'high-contrast';
-        });
+    const [highContrast, setHighContrast] = useState(() => {
+        if (typeof window === 'undefined') return false;
+        return localStorage.getItem('youvote-theme') === 'high-contrast';
+    });
+    const [fontSize, setFontSize] = useState(() => {
+        if (typeof window === 'undefined') return 100;
+        const saved = localStorage.getItem('youvote-font-size');
+        return saved ? parseInt(saved) : 100;
+    });
 
-        useEffect(() => {
-            if (typeof document === 'undefined') return;
-            if (highContrast) {
-                document.documentElement.setAttribute('data-theme', 'high-contrast');
-                localStorage.setItem('youvote-theme', 'high-contrast');
-            } else {
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('youvote-theme', 'light');
-            }
-        }, [highContrast]);
+    useEffect(() => {
+        if (typeof document === 'undefined') return;
+        if (highContrast) {
+            document.documentElement.setAttribute('data-theme', 'high-contrast');
+            localStorage.setItem('youvote-theme', 'high-contrast');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('youvote-theme', 'light');
+        }
+    }, [highContrast]);
+
+    useEffect(() => {
+        if (typeof document === 'undefined') return;
+        document.documentElement.style.fontSize = `${fontSize}%`;
+        localStorage.setItem('youvote-font-size', fontSize.toString());
+    }, [fontSize]);
+
+    const increaseFontSize = () => {
+        setFontSize(prev => Math.min(prev + 10, 150)); // Max 150%
+    };
+
+    const decreaseFontSize = () => {
+        setFontSize(prev => Math.max(prev - 10, 80)); // Min 80%
+    };
+
+    const resetFontSize = () => {
+        setFontSize(100);
+    };
 
     const handleLogout = () => {
     logout();
@@ -74,6 +101,41 @@ const NavBar = () => {
                                 inputProps={{ 'aria-label': 'Toggle high contrast theme' }}
                             />
                             <p>{highContrast ? 'High Contrast: On' : 'High Contrast: Off'}</p>
+                        </div>
+                        <div className="nav-font-controls" aria-label="Font size controls">
+                            <Tooltip title="Decrease font size">
+                                <IconButton 
+                                    onClick={decreaseFontSize}
+                                    disabled={fontSize <= 80}
+                                    size="small"
+                                    aria-label="Decrease font size"
+                                    data-speak="Decrease text size"
+                                >
+                                    <TextDecreaseIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <span className="font-size-label">{fontSize}%</span>
+                            <Tooltip title="Increase font size">
+                                <IconButton 
+                                    onClick={increaseFontSize}
+                                    disabled={fontSize >= 150}
+                                    size="small"
+                                    aria-label="Increase font size"
+                                    data-speak="Increase text size"
+                                >
+                                    <TextIncreaseIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Reset font size">
+                                <IconButton 
+                                    onClick={resetFontSize}
+                                    size="small"
+                                    aria-label="Reset font size to default"
+                                    data-speak="Reset text size"
+                                >
+                                    <RestartAltIcon />
+                                </IconButton>
+                            </Tooltip>
                         </div>
             </div>
             <IconButton
