@@ -70,6 +70,9 @@ mongoose.connect(MONGODB_URI)
 
 app.use('/', routes);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://127.0.0.1:${PORT}`);
+// Listen on 0.0.0.0 to accept connections from anywhere (required for Render)
+const HOST = process.env.HOST || '0.0.0.0';
+app.listen(PORT, HOST, () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log('Backend ready to accept connections');
 });

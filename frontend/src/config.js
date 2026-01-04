@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-// Prefer env override but fall back to local dev API
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:5000';
+// Production backend URL on Render
+// Frontend: https://vote-1-2pap.onrender.com
+// Backend: https://vote-5upq.onrender.com
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://vote-5upq.onrender.com';
 
 const api = axios.create({
     baseURL: API_BASE_URL,
