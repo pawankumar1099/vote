@@ -1,8 +1,8 @@
-YouVote API Documentation
+SecureVote API Documentation
 
 
 Introduction
-Welcome to the YouVote API documentation. This API provides endpoints to manage elections, candidates, votes, and user authentication for the YouVote platform.
+Welcome to the SecureVote API documentation. This API provides endpoints to manage elections, candidates, votes, and user authentication for the SecureVote platform.
 This API uses JSON Web Tokens (JWT) for authentication. To access protected endpoints, include a valid JWT token in the Authorization header with the Bearer scheme.
 
 
